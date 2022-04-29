@@ -1,21 +1,21 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/test', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/computasdag', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'push', 'gcr.io/$PROJECT_ID/test' ]
+    args: [ 'push', 'gcr.io/$PROJECT_ID/computasdag' ]
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
       - 'run'
       - 'deploy'
-      - 'test'
+      - 'computasdag'
       - '--image'
-      - 'gcr.io/$PROJECT_ID/test:latest'
+      - 'gcr.io/$PROJECT_ID/computasdag:lacomputasdag'
       - '--region'
       - 'europe-north1'
       - '--platform'
       - 'managed'
-images: ['gcr.io/$PROJECT_ID/test']
+images: ['gcr.io/$PROJECT_ID/computasdag']
 options:
   machineType: N1_HIGHCPU_8
